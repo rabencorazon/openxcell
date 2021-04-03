@@ -7,14 +7,12 @@ const transporter = nodemailer.createTransport({
     auth: { user, pass }
 });
 
-module.exports = (recipents, contents) => new Promise((resolve, reject) => {
+module.exports = ({ recipents, contents }) => new Promise((resolve, reject) => {
     transporter.sendMail({
         from: "rabencorazon@gmail.com",
-        to: "rajatmishra18110@gmail.com",
-        subject: "test",
-        text: "this is just a testing"
-        // subject: contents.subject,
-        // [contents.type]: contents.content
+        to: recipents,
+        subject: contents.subject,
+        [contents.type]: contents.content
     })
         .then(resolve)
         .catch(reject);
