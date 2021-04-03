@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "6068548b0a026742348d91d4"
+  },
+  "comment": "some comment here - by user 1",
+  "postId": {
+    "$oid": "606851b615613c002010529a"
+  },
+  "userId": {
+    "$oid": "606804846dc6be40143e6ce3"
+  },
+  "createdAt": {
+    "$date": "2021-04-03T11:42:03.715Z"
+  },
+  "updatedAt": {
+    "$date": "2021-04-03T11:42:03.715Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "606858745ad51f3b380dd9ca"
+  },
+  "postId": {
+    "$oid": "606851b615613c002010529a"
+  },
+  "comment": "some comment here - by user 2",
+  "userId": {
+    "$oid": "606856c70a026742348d91d5"
+  },
+  "createdAt": {
+    "$date": "2021-04-03T11:58:44.108Z"
+  },
+  "updatedAt": {
+    "$date": "2021-04-03T11:58:44.108Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "60682b736839852e489af24c"
+  },
+  "name": "something",
+  "userId": {
+    "$oid": "606804846dc6be40143e6ce3"
+  },
+  "createdAt": {
+    "$date": "2021-04-03T08:46:43.934Z"
+  },
+  "updatedAt": {
+    "$date": "2021-04-03T08:46:43.934Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "606866ffbcab141e94126ea2"
+  },
+  "name": "final testing",
+  "userId": {
+    "$oid": "606804846dc6be40143e6ce3"
+  },
+  "createdAt": {
+    "$date": "2021-04-03T13:00:47.859Z"
+  },
+  "updatedAt": {
+    "$date": "2021-04-03T13:00:47.859Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "606851b615613c002010529a"
+  },
+  "caption": "some caption for post-1",
+  "images": [
+    "\\posts\\photos-1617449398797.jpg",
+    "\\posts\\photos-1617449398820.jpg"
+  ],
+  "userId": {
+    "$oid": "606804846dc6be40143e6ce3"
+  },
+  "topicId": {
+    "$oid": "60682b736839852e489af24c"
+  },
+  "createdAt": {
+    "$date": "2021-04-03T11:29:58.845Z"
+  },
+  "updatedAt": {
+    "$date": "2021-04-03T11:29:58.845Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6068678a125e542da847ab85"
+  },
+  "caption": "final-tseting",
+  "images": [],
+  "userId": {
+    "$oid": "606804846dc6be40143e6ce3"
+  },
+  "topicId": {
+    "$oid": "606866ffbcab141e94126ea2"
+  },
+  "createdAt": {
+    "$date": "2021-04-03T13:03:06.837Z"
+  },
+  "updatedAt": {
+    "$date": "2021-04-03T13:03:06.837Z"
+  },
+  "__v": 0
+}]
