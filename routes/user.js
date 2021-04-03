@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 const user = require("../controllers/user");
+const validator = require("../validators");
 
 module.exports = Router()
     /**
@@ -21,7 +22,7 @@ module.exports = Router()
      *
      * @returns {Error}  Error - Unexpected error
      */
-    .post('/register', (request, response) => user.register(request, response))
+    .post('/register', validator.validate, (request, response) => user.register(request, response))
 
     /**
     * @typedef Login
@@ -30,14 +31,14 @@ module.exports = Router()
     */
 
     /**
-     * User Registration
-     * @route POST /user/register
+     * User Login
+     * @route POST /user/login
      * @param {Login.model} data.body.required - user object here
      * @group User - User operation
      * @returns {Success} 200 -
-     *      Returns added user object
+     *      Returns user login object
      *
      * @returns {Error}  Error - Unexpected error
      */
-    .post('/login', (request, response) => user.login(request, response))
+    .post('/login', validator.validate, (request, response) => user.login(request, response))
     .post('/test', (request, response) => response.send("all the services of user all initialised!"));

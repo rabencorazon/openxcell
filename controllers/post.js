@@ -16,9 +16,11 @@ async function create(request, response) {
 
     const post = await Post.create({
         caption, userId, topicId,
-        images: request.files.map(e => {
-            return e.path.split("public")[1]
-        })
+        images: request.files
+            ? request.files.map(e => {
+                return e.path.split("public")[1]
+            })
+            : []
     });
 
     return response.send(helperUtils.successObj({ message: "post created successfully!", result: post }));
@@ -72,4 +74,4 @@ async function addComment(request, response) {
     return response.send(helperUtils.successObj({ message: "comment added to the post!", result: comment }));
 }
 
-module.exports = { create, list, addComment, temp }
+module.exports = { create, list, addComment }

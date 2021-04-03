@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 const post = require("../controllers/post");
+const validator = require("../validators");
 const authenticate = require("../middlewares/authentication");
 const { upload } = require("../middlewares/multer");
 
@@ -24,7 +25,7 @@ module.exports = Router()
      * @returns {Error}  Error - Unexpected error
      * @security User
      */
-    .post('/create', [authenticate, upload.array('photos')], (request, response) => post.temp(request, response))
+    .post('/create', [authenticate, validator.validate, upload.array('photos')], (request, response) => post.create(request, response))
 
     /**
      * List Post
@@ -39,7 +40,7 @@ module.exports = Router()
      * @returns {Error}  Error - Unexpected error
      * @security User
      */
-    .get('/my-posts', authenticate, (request, response) => post.list(request, response))
+    .get('/my-posts', [authenticate, validator.validate], (request, response) => post.list(request, response))
 
     /**
     * @typedef Comment
@@ -58,5 +59,5 @@ module.exports = Router()
      * @returns {Error}  Error - Unexpected error
      * @security User
      */
-    .post('/add-comment', authenticate, (request, response) => post.addComment(request, response))
+    .post('/add-comment', [authenticate, validator.validate], (request, response) => post.addComment(request, response))
     .get('/test', (request, response) => response.send("topic end points are working"))

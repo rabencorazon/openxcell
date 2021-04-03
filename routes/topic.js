@@ -2,6 +2,7 @@ const { Router } = require("express");
 
 const topic = require("../controllers/topic");
 const authenticate = require("../middlewares/authentication");
+const validator = require("../validators");
 
 module.exports = Router()
     /**
@@ -20,7 +21,7 @@ module.exports = Router()
      * @returns {Error}  Error - Unexpected error
      * @security User
      */
-    .post('/create', authenticate, (request, response) => topic.create(request, response))
+    .post('/create', [authenticate, validator.validate], (request, response) => topic.create(request, response))
 
     /**
      * Topic Deletion
@@ -48,5 +49,5 @@ module.exports = Router()
      * @returns {Error}  Error - Unexpected error
      * @security User
      */
-    .get('/my-topics', authenticate, (request, response) => topic.list(request, response))
+    .get('/my-topics', [authenticate, validator.validate], (request, response) => topic.list(request, response))
     .get('/test', (request, response) => response.send("topic end points are working"))
