@@ -41,12 +41,17 @@ async function list(request, response) {
 
     let result = posts.map(post => {
         post.images = post.images.map(image => {
-            let a = "";
-            if (image.includes("\\")) image.replaceAll("\\", "\/")
-        })
-    })
+            let url = process.env.host;
+            if (image.includes("\\")) url += image.replaceAll("\\", "/");
+            else url += image;
 
-    return response.send(helperUtils.successObj({ message: "list of posts!", result: posts }));
+            return url;
+        });
+
+        return post;
+    });
+
+    return response.send(helperUtils.successObj({ message: "list of posts!", result }));
 }
 
 async function addComment(request, response) {
