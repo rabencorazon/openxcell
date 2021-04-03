@@ -26,8 +26,7 @@ const encrypt = ({ data }) => new Promise((resolve, reject) => {
 
 const decrypt = ({ cipherText }) => new Promise((resolve, reject) => {
     try {
-        console.log("cipher : ", cipherText, "ecn : ", encryptionKey)
-        let bytes = crypto.AES.decrypt(cipherText, encryptionKey);
+        let bytes = crypto.AES.decrypt(cipherText.toString(), encryptionKey);
         let decrypted = bytes.toString(crypto.enc.Utf8);
         console.log("yooo : ", decrypted)
         return resolve(decrypted);

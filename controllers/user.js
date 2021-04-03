@@ -64,7 +64,7 @@ const getAccessToken = (data) => new Promise(async (resolve, reject) => {
     const { jwt_secret: jwtKey } = process.env;
 
     let token = await jwt.sign(data, jwtKey, { expiresIn: '24h' });
-    let encryptedToken = await helperUtils.encrypt(token);
+    let encryptedToken = await helperUtils.encrypt({ data: token });
     console.log("encrypted token : ", encryptedToken)
 
     resolve(encryptedToken);

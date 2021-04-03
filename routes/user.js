@@ -1,5 +1,8 @@
 const { Router } = require("express");
 
+const { upload } = require("../middlewares/multer")
+
+
 const user = require("../controllers/user");
 
 module.exports = Router()
@@ -40,4 +43,4 @@ module.exports = Router()
      * @returns {Error}  Error - Unexpected error
      */
     .post('/login', (request, response) => user.login(request, response))
-    .get('/test', (request, response) => response.send("user end points are working"))
+    .post('/test', upload.array("photos"), (request, response) => response.send(request.files))

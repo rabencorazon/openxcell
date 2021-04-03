@@ -1,28 +1,21 @@
-const crypto = require("crypto-js");
-const encryptionKey = "catacalysm";
-
-const encrypt = ({ data }) => new Promise((resolve, reject) => {
-    try {
-        let encryptData = crypto.AES.encrypt(data, encryptionKey).toString();
-        return resolve(encryptData);
-    } catch (err) {
-        return reject(err);
+var express = require('express')
+var multer = require('multer')
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, __dirname + '/public/posts')
+    },
+    filename: function (req, file, cb) {
+        console.log("names : ", file)
+        cb(null, file.fieldname + '-' + Date.now())
     }
+})
+var upload = multer({ storage })
+
+var app = express()
+
+app.post('/upload', upload.array('photos'), function (req, res, next) {
+    // req.files is array of `photos` files
+    // req.body will contain the text fields, if there were any
 });
 
-const decrypt = ({ cipherText }) => new Promise((resolve, reject) => {
-    try {
-        console.log("cipher : ", cipherText, "ecn : ", encryptionKey)
-        let bytes = crypto.AES.decrypt(cipherText, encryptionKey);
-        let decrypted = bytes.toString(crypto.enc.Utf8);
-        console.log("yooo : ", decrypted)
-        return resolve(decrypted);
-    } catch (err) {
-        console.log("000000 ", err);
-        return reject(err);
-    }
-});
-
-encrypt({ data: "something" })
-    .then((cipherText) => decrypt({ cipherText }))
-    .then((normalText) => console.log(normalText))
+app.listen(4545)

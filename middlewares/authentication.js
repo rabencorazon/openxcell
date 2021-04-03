@@ -5,8 +5,6 @@ module.exports = async function (request, response, next) {
     try {
         let { error, authorised } = await verifyAccessToken(request.headers["x-auth-token"]);
 
-        console.log(error, authorised)
-
         if (!authorised || error) return response.send(helperUtils.errorObj({ message: "user authorisation failed!" }));
 
         request.user = authorised;
@@ -23,7 +21,6 @@ const verifyAccessToken = (token) => new Promise(async (resolve, reject) => {
     let decryptedToken = await helperUtils.decrypt({ cipherText: token });
 
     try {
-        console.log("decrypted token : ", decryptedToken)
         let payload = await jwt.verify(decryptedToken, jwtKey);
         resolve({ authorised: payload });
     } catch (error) {
