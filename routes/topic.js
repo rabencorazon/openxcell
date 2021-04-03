@@ -18,6 +18,7 @@ module.exports = Router()
      *      Returns added topic object
      *
      * @returns {Error}  Error - Unexpected error
+     * @security User
      */
     .post('/create', authenticate, (request, response) => topic.create(request, response))
 
@@ -30,6 +31,22 @@ module.exports = Router()
      *      Returns added user object
      *
      * @returns {Error}  Error - Unexpected error
+     * @security User
      */
     .post('/:topicId', authenticate, (request, response) => topic.del(request, response))
+
+    /**
+     * Topic Listing
+     * @route GET /topic/my-topics
+     * @param {string} q.query.required - search query value here
+     * @param {string} n.query.required - no. of entries
+     * @param {string} p.query.required - page no.
+     * @group User - User operation
+     * @returns {object} 200 -
+     *      Returns list of clients
+     *
+     * @returns {Error}  Error - Unexpected error
+     * @security User
+     */
+    .get('/my-topics', authenticate, (request, response) => topic.list(request, response))
     .get('/test', (request, response) => response.send("topic end points are working"))

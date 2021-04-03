@@ -22,18 +22,18 @@ async function del(request, response) {
 }
 
 async function list(request, response) {
-    let { page = 1, limit = 999, search } = req.body;
+    let { p: page = 1, n: limit = 999, q: search } = request.query;
 
-    let query = { userId: require.user.userId };
+    let query = { userId: request.user.userId };
 
     if (search) query.name = new RegExp(search, "i");
 
-    let topics = await Topics
+    let topics = await Topic
         .find(query)
-        .skip((page - 1) * limit)
-        .limit(limit);
+        .skip((parseInt(page) - 1) * parseInt(limit))
+        .limit(parseInt(limit));
 
-    return response.send(helperUtils.successObj({ message: "list of topics!" }));
+    return response.send(helperUtils.successObj({ message: "list of topics!", result: topics }));
 }
 
-module.exports = { create, del }
+module.exports = { create, del, list }

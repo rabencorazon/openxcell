@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 
 module.exports = async function (request, response, next) {
     try {
+        if (!request.headers["x-auth-token"]) return response.status(401).send(helperUtils.errorObj({ message: "unauthorised!" }));
+
         let { error, authorised } = await verifyAccessToken(request.headers["x-auth-token"]);
 
         if (!authorised || error) return response.send(helperUtils.errorObj({ message: "user authorisation failed!" }));

@@ -1,8 +1,5 @@
 const { Router } = require("express");
 
-const { upload } = require("../middlewares/multer")
-
-
 const user = require("../controllers/user");
 
 module.exports = Router()
@@ -43,4 +40,4 @@ module.exports = Router()
      * @returns {Error}  Error - Unexpected error
      */
     .post('/login', (request, response) => user.login(request, response))
-    .post('/test', upload.array("photos"), (request, response) => response.send(request.files))
+    .post('/test', (request, response) => response.send("all the services of user all initialised!"));
