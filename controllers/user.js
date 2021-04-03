@@ -5,10 +5,6 @@ const { helperUtils, sendMail } = require("../utils");
 const winston = require("winston");
 const jwt = require("jsonwebtoken");
 
-function test(req, res) {
-    res.send("hey, all the services are working fine!")
-}
-
 async function register(request, response) {
     const payload = request.body;
 
@@ -75,8 +71,6 @@ const getAccessToken = (data, type) => new Promise(async (resolve, reject) => {
 });
 
 module.exports = {
-    test,
-
     register,
     login
 }
