@@ -15,10 +15,6 @@ function errorObj({ message = "", error = {} } = {}) {
     }
 }
 
-function authentication({ }) {
-
-}
-
 const encrypt = ({ data }) => new Promise((resolve, reject) => {
     try {
         let encryptData = crypto.AES.encrypt(data, encryptionKey).toString();
@@ -30,8 +26,10 @@ const encrypt = ({ data }) => new Promise((resolve, reject) => {
 
 const decrypt = ({ cipherText }) => new Promise((resolve, reject) => {
     try {
-        let bytes = CryptoJS.AES.decrypt(cipherText, encryptionKey);
-        let decrypted = bytes.toString(CryptoJS.enc.Utf8);
+        console.log("cipher : ", cipherText, "ecn : ", encryptionKey)
+        let bytes = crypto.AES.decrypt(cipherText, encryptionKey);
+        let decrypted = bytes.toString(crypto.enc.Utf8);
+        console.log("yooo : ", decrypted)
         return resolve(decrypted);
     } catch (err) {
         console.log("000000 ", err);
@@ -39,4 +37,4 @@ const decrypt = ({ cipherText }) => new Promise((resolve, reject) => {
     }
 });
 
-module.exports = { successObj, errorObj, authentication, encrypt, decrypt };
+module.exports = { successObj, errorObj, encrypt, decrypt };

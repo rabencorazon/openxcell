@@ -60,7 +60,7 @@ async function login(request, response) {
     return response.header('x-auth-token', accessToken).send(helperUtils.successObj({ message: "User login successful!", result }));
 }
 
-const getAccessToken = (data, type) => new Promise(async (resolve, reject) => {
+const getAccessToken = (data) => new Promise(async (resolve, reject) => {
     const { jwt_secret: jwtKey } = process.env;
 
     let token = await jwt.sign(data, jwtKey, { expiresIn: '24h' });

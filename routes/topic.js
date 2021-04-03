@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 const topic = require("../controllers/topic");
+const authenticate = require("../middlewares/authentication");
 
 module.exports = Router()
     /**
@@ -18,7 +19,7 @@ module.exports = Router()
      *
      * @returns {Error}  Error - Unexpected error
      */
-    .post('/create', (request, response) => topic.create(request, response))
+    .post('/create', authenticate, (request, response) => topic.create(request, response))
 
     /**
      * Topic Deletion
@@ -30,5 +31,5 @@ module.exports = Router()
      *
      * @returns {Error}  Error - Unexpected error
      */
-    .post('/:topicId', (request, response) => topic.del(request, response))
+    .post('/:topicId', authenticate, (request, response) => topic.del(request, response))
     .get('/test', (request, response) => response.send("topic end points are working"))
